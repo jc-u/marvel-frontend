@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Characters = () => {
 	const [data, setData] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 	const [totalPages, setTotalPages] = useState(0);
 	const [currentPage, setCurrentPage] = useState(1);
+	const [searchTerm, setSearchTerm] = useState("");
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -14,12 +15,11 @@ const Characters = () => {
 				const response = await axios.get(
 					`https://site--marvel-backend--tfb724g8njkw.code.run/marvel/characters?limit=100&skip=${
 						(currentPage - 1) * 100
-					}`
+					}&name=${searchTerm}`
 				);
 
 				setData(response.data.results);
 				setTotalPages(response.data.totalPages);
-
 				setIsLoading(false);
 			} catch (error) {
 				console.error("Error fetching characters:", error.message);
@@ -28,10 +28,14 @@ const Characters = () => {
 		};
 
 		fetchData();
-	}, [currentPage]);
+	}, [currentPage, searchTerm]);
 
 	const handlePageChange = (newPage) => {
 		setCurrentPage(newPage);
+	};
+
+	const handleSearch = (e) => {
+		setSearchTerm(e.target.value);
 	};
 
 	return isLoading ? (
@@ -39,7 +43,15 @@ const Characters = () => {
 	) : (
 		<div className="container-characters">
 			<h1>Characters</h1>
-			<div className="characters-container">
+			<div className="search-bar">
+				<input
+					type="text"
+					placeholder="Search by name"
+					value={searchTerm}
+					onChange={handleSearch}
+				/>
+			</div>
+			<div className="characters">
 				{data.map((character) => (
 					<Link to={`/personnages/${character._id}`} key={character._id}>
 						<div className="characters-card">

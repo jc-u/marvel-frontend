@@ -24,8 +24,6 @@ const Character = () => {
 		fetchData();
 	}, [id]);
 
-	console.log(data);
-
 	return isLoading ? (
 		<p>Loading...</p>
 	) : (
