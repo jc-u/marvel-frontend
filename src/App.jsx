@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Characters from "./pages/Characters";
 import Character from "./pages/Character";
 import Comics from "./pages/Comics";
+import Favorites from "./pages/Favorites";
 import "./App.css";
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
 				<Route path="/personnages" element={<Characters />} />
 				<Route path="/personnages/:id" element={<Character />} />
 				<Route path="/comics" element={<Comics />} />
-				<Route path="/favoris" element={<h1>Favoris</h1>} />
+				<Route path="/favoris" element={<Favorites />} />
 				<Route path="*" element={<h1>Not Found</h1>} />
 			</Routes>
 		</Router>

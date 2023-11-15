@@ -8,6 +8,7 @@ const Comics = () => {
 	const [totalPages, setTotalPages] = useState(0);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [searchTerm, setSearchTerm] = useState("");
+	const [favorites, setFavorites] = useState({});
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -26,13 +27,43 @@ const Comics = () => {
 				setTotalPages(response.data.totalPages);
 				setIsLoading(false);
 			} catch (error) {
-				console.log("Error fetching characters:", error.message);
+				console.log("Error fetching comics:", error.message);
 				setIsLoading(false);
 			}
 		};
 
 		fetchData();
 	}, [currentPage, searchTerm]);
+
+	console.log(favorites);
+
+	useEffect(() => {
+		// Get favorites from localStorage
+		const comicFavorites = JSON.parse(
+			localStorage.getItem("comicFavorites") || "{}"
+		);
+		setFavorites({ ...comicFavorites });
+	}, []);
+
+	const handleToggleFavorite = (id, details) => {
+		// Get existing favorites from localStorage
+		const existingFavorites =
+			JSON.parse(localStorage.getItem("comicFavorites")) || {};
+
+		// Toggle the favorite status
+		const updatedFavorites = { ...existingFavorites };
+		if (updatedFavorites[id]) {
+			// Remove the comic from favorites
+			delete updatedFavorites[id];
+		} else {
+			// Add the comic to favorites with additional details
+			updatedFavorites[id] = { ...details };
+		}
+
+		// Update state and localStorage
+		setFavorites(updatedFavorites);
+		localStorage.setItem("comicFavorites", JSON.stringify(updatedFavorites));
+	};
 
 	const handlePageChange = (newPage) => {
 		setCurrentPage(newPage);
@@ -41,8 +72,6 @@ const Comics = () => {
 	const handleSearch = (e) => {
 		setSearchTerm(e.target.value);
 	};
-
-	console.log(data);
 
 	return isLoading ? (
 		<p>Loading...</p>
@@ -59,19 +88,34 @@ const Comics = () => {
 			<div className="comics-container">
 				{data.map((comic) => {
 					return (
-						<Link to={`/comics/${comic._id}`} key={comic._id}>
-							<div className="comics-card">
-								<img
-									src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
-									alt={comic.title}
-									onError={(e) => {
-										e.target.src = "/path/to/placeholder-image.jpg";
-									}}
-								/>
-								<h2>{comic.title}</h2>
-								<p>{comic.description}</p>
-							</div>
-						</Link>
+						<>
+							<button
+								onClick={() =>
+									handleToggleFavorite(comic._id, {
+										name: comic.name,
+										description: comic.description,
+										thumbnail: {
+											path: comic.thumbnail.path,
+											extension: comic.thumbnail.extension,
+										},
+									})
+								}>
+								LOVE
+							</button>
+							<Link to={`/comics/${comic._id}`} key={comic._id}>
+								<div className="comics-card">
+									<img
+										src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
+										alt={comic.title}
+										onError={(e) => {
+											e.target.src = "/path/to/placeholder-image.jpg";
+										}}
+									/>
+									<h2>{comic.title}</h2>
+									<p>{comic.description}</p>
+								</div>
+							</Link>
+						</>
 					);
 				})}
 

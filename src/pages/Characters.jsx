@@ -8,6 +8,7 @@ const Characters = () => {
 	const [totalPages, setTotalPages] = useState(0);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [searchTerm, setSearchTerm] = useState("");
+	const [favorites, setFavorites] = useState({});
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -29,6 +30,40 @@ const Characters = () => {
 
 		fetchData();
 	}, [currentPage, searchTerm]);
+
+	console.log(favorites);
+
+	useEffect(() => {
+		// Get favorites from localStorage
+		const characterFavorites = JSON.parse(
+			localStorage.getItem("characterFavorites") || "{}"
+		);
+
+		setFavorites({ ...characterFavorites });
+	}, []);
+
+	const handleToggleFavorite = (id, details) => {
+		// Get existing favorites from localStorage
+		const existingFavorites =
+			JSON.parse(localStorage.getItem("characterFavorites")) || {};
+
+		// Toggle the favorite status
+		const updatedFavorites = { ...existingFavorites };
+		if (updatedFavorites[id]) {
+			// Remove the character from favorites
+			delete updatedFavorites[id];
+		} else {
+			// Add the character to favorites with additional details
+			updatedFavorites[id] = { ...details };
+		}
+
+		// Update state and localStorage
+		setFavorites(updatedFavorites);
+		localStorage.setItem(
+			"characterFavorites",
+			JSON.stringify(updatedFavorites)
+		);
+	};
 
 	const handlePageChange = (newPage) => {
 		setCurrentPage(newPage);
@@ -53,19 +88,34 @@ const Characters = () => {
 			</div>
 			<div className="characters">
 				{data.map((character) => (
-					<Link to={`/personnages/${character._id}`} key={character._id}>
-						<div className="characters-card">
-							<img
-								src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
-								alt={character.name}
-								onError={(e) => {
-									e.target.src = "/path/to/placeholder-image.jpg";
-								}}
-							/>
-							<h2>{character.name}</h2>
-							<p>{character.description}</p>
-						</div>
-					</Link>
+					<>
+						<button
+							onClick={() =>
+								handleToggleFavorite(character._id, {
+									name: character.name,
+									description: character.description,
+									thumbnail: {
+										path: character.thumbnail.path,
+										extension: character.thumbnail.extension,
+									},
+								})
+							}>
+							LOVE
+						</button>
+						<Link to={`/personnages/${character._id}`} key={character._id}>
+							<div className="characters-card">
+								<img
+									src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
+									alt={character.name}
+									onError={(e) => {
+										e.target.src = "/path/to/placeholder-image.jpg";
+									}}
+								/>
+								<h2>{character.name}</h2>
+								<p>{character.description}</p>
+							</div>
+						</Link>
+					</>
 				))}
 			</div>
 			<div className="pagination">
