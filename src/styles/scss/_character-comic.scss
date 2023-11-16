@@ -1,0 +1,19 @@
+.character-container,
+.comic-container {
+	position: relative;
+
+	.background {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		opacity: 0.1;
+		width: 100%;
+		object-fit: cover;
+	}
+
+	p {
+		width: 95%;
+		margin: 0 auto;
+	}
+}

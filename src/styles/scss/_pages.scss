@@ -1,0 +1,76 @@
+.container-characters,
+.container-comics,
+.container-favorites,
+.character-container,
+.comic-container {
+	margin-top: 84px;
+
+	.search-bar {
+		width: 95%;
+		margin: 0 auto;
+		position: relative;
+		margin-bottom: 40px;
+		input {
+			background-color: #f5f6f7;
+			border: none;
+			border-radius: 5px;
+			font-size: 16px;
+			height: 37px;
+			outline: none;
+			padding-left: 40px;
+			width: 90%;
+		}
+
+		svg {
+			width: 1em;
+			color: #bbb;
+			left: 7px;
+			position: absolute;
+			top: 12px;
+			display: inline-block;
+			font-size: inherit;
+			height: 1em;
+			vertical-align: -0.125em;
+		}
+	}
+	.characters,
+	.comics,
+	.favorites,
+	.character {
+		display: flex;
+		flex-wrap: wrap;
+		margin: 0 auto;
+
+		.characters-card {
+			position: relative;
+
+			a {
+				padding: 10px;
+			}
+
+			svg {
+				position: absolute;
+				top: 28%;
+				right: 10%;
+				z-index: 2;
+				color: $primary;
+			}
+		}
+
+		.comics-card {
+			position: relative;
+
+			a {
+				padding: 10px;
+			}
+
+			svg {
+				position: absolute;
+				top: 12%;
+				right: 12%;
+				z-index: 2;
+				color: $primary;
+			}
+		}
+	}
+}

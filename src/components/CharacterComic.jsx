@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 const CharacterComic = ({ comic }) => {
-	console.log(comic);
 	const [data, setData] = useState({});
 	const [isLoading, setIsLoading] = useState(true);
 
@@ -21,19 +21,22 @@ const CharacterComic = ({ comic }) => {
 		fetchData();
 	}, [comic]);
 
-	console.log(data);
-
 	return isLoading ? (
 		<p>Loading...</p>
 	) : (
-		<div className="comic-card">
-			<h2>{data.title}</h2>
-			<img
-				src={`${data.thumbnail.path}.${data.thumbnail.extension}`}
-				alt={data.title}
-			/>
-			<p>{data.description}</p>
-		</div>
+		<Link to={`/comics/${comic}`} key={comic._id}>
+			<div className="comic-card card">
+				<h2>{data.title}</h2>
+				<img
+					src={`${data.thumbnail.path}/portrait_xlarge.${data.thumbnail.extension}`}
+					alt={data.title}
+					onError={(e) => {
+						e.target.src = `${data.thumbnail.path}.${data.thumbnail.extension}`;
+					}}
+				/>
+				<p>{data.description}</p>
+			</div>
+		</Link>
 	);
 };
 

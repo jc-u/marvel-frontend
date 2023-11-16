@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import CharacterComic from "../components/CharacterComic";
 
-const Character = () => {
+const Comic = () => {
 	const [data, setData] = useState({});
 	const [isLoading, setIsLoading] = useState(true);
 
@@ -13,7 +12,7 @@ const Character = () => {
 		const fetchData = async () => {
 			try {
 				const response = await axios.get(
-					`https://site--marvel-backend--tfb724g8njkw.code.run/marvel/character/${id}`
+					`https://site--marvel-backend--tfb724g8njkw.code.run/marvel/comic/${id}`
 				);
 				setData(response.data);
 				setIsLoading(false);
@@ -27,21 +26,18 @@ const Character = () => {
 	return isLoading ? (
 		<p>Loading...</p>
 	) : (
-		<div className="character-container">
+		<div className="comic-container">
 			<img
 				className="background"
 				src={`${data.thumbnail.path}/portrait_uncanny.${data.thumbnail.extension}`}
 				alt={data.name}
 			/>
-			<h1>{data.name}</h1>
-			<p>{data.description}</p>
-			<div className="character">
-				{data.comics.map((comic) => (
-					<CharacterComic key={comic} comic={comic} />
-				))}
+			<h1>{data.title}</h1>
+			<div className="comic">
+				<p>{data.description}</p>
 			</div>
 		</div>
 	);
 };
 
-export default Character;
+export default Comic;

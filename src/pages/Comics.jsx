@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Comics = () => {
 	const [data, setData] = useState([]);
@@ -10,6 +11,23 @@ const Comics = () => {
 	const [searchTerm, setSearchTerm] = useState("");
 	const [favorites, setFavorites] = useState({});
 
+	const customSort = (a, b) => {
+		// Fonction pour extraire la partie lettre du titre
+		const getLetterPart = (str) => str.replace(/[0-9]/g, "");
+
+		const letterPartA = getLetterPart(a.title.toUpperCase());
+		const letterPartB = getLetterPart(b.title.toUpperCase());
+
+		// Comparaison des parties lettres en fonction du titre
+		if (letterPartA < letterPartB) {
+			return -1;
+		}
+		if (letterPartA > letterPartB) {
+			return 1;
+		}
+		return 0; // Les parties lettres sont égales
+	};
+
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
@@ -18,14 +36,13 @@ const Comics = () => {
 						(currentPage - 1) * 10
 					}&title=${searchTerm}`
 				);
-				// Tri des comics par ordre alphabétique du titre
-				const sortedData = response.data.results.sort((a, b) =>
-					a.title.localeCompare(b.title)
-				);
+				const sortedData = response.data.results.sort(customSort);
 
 				setData(sortedData);
 				setTotalPages(response.data.totalPages);
 				setIsLoading(false);
+				// Scroll to the top when changing the page
+				window.scrollTo(0, 0);
 			} catch (error) {
 				console.log("Error fetching comics:", error.message);
 				setIsLoading(false);
@@ -34,8 +51,9 @@ const Comics = () => {
 
 		fetchData();
 	}, [currentPage, searchTerm]);
-
+	console.log(data);
 	console.log(favorites);
+	console.log(totalPages);
 
 	useEffect(() => {
 		// Get favorites from localStorage
@@ -77,60 +95,75 @@ const Comics = () => {
 		<p>Loading...</p>
 	) : (
 		<>
-			<div className="search-bar">
-				<input
-					type="text"
-					placeholder="Search by name"
-					value={searchTerm}
-					onChange={handleSearch}
-				/>
-			</div>
-			<div className="comics-container">
-				{data.map((comic) => {
-					return (
-						<>
-							<button
-								onClick={() =>
-									handleToggleFavorite(comic._id, {
-										name: comic.name,
-										description: comic.description,
-										thumbnail: {
-											path: comic.thumbnail.path,
-											extension: comic.thumbnail.extension,
-										},
-									})
-								}>
-								LOVE
-							</button>
-							<Link to={`/comics/${comic._id}`} key={comic._id}>
-								<div className="comics-card">
-									<img
-										src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
-										alt={comic.title}
-										onError={(e) => {
-											e.target.src = "/path/to/placeholder-image.jpg";
-										}}
-									/>
-									<h2>{comic.title}</h2>
-									<p>{comic.description}</p>
-								</div>
-							</Link>
-						</>
-					);
-				})}
-
+			<div className="container-comics">
+				<h1>Comics</h1>
+				<div className="search-bar">
+					<input
+						type="text"
+						placeholder="Recherche par nom"
+						value={searchTerm}
+						onChange={handleSearch}
+					/>
+					<FontAwesomeIcon icon="magnifying-glass" />
+				</div>
+				<div className="comics">
+					{data.map((comic) => {
+						return (
+							<div key={comic._id} className="comics-card ">
+								<>
+									<Link to={`/comics/${comic._id}`} key={comic._id}>
+										<div className="comic-card card">
+											<img
+												src={`${comic.thumbnail.path}/portrait_medium.${comic.thumbnail.extension}`}
+												alt={comic.title}
+												onError={(e) => {
+													e.target.src = `${comic.thumbnail.path}.${comic.thumbnail.extension}`;
+												}}
+											/>
+											<h2>{comic.title}</h2>
+											<p>{comic.description}</p>
+										</div>
+									</Link>
+								</>
+								<FontAwesomeIcon
+									icon={
+										favorites[comic._id] ? ["fas", "heart"] : ["far", "heart"]
+									}
+									onClick={() =>
+										handleToggleFavorite(comic._id, {
+											type: "comic",
+											name: comic.title,
+											description: comic.description,
+											thumbnail: {
+												path: comic.thumbnail.path,
+												extension: comic.thumbnail.extension,
+											},
+										})
+									}
+								/>
+							</div>
+						);
+					})}
+				</div>
 				<div className="pagination">
-					<button
+					<FontAwesomeIcon
+						className={currentPage === 1 ? "disabled" : ""}
+						icon="angle-left"
+						fade
+						size="2xl"
 						onClick={() => handlePageChange(currentPage - 1)}
-						disabled={currentPage === 1}>
-						Previous
-					</button>
+					/>
+
 					<span>{currentPage}</span>
-					<button
-						onClick={() => handlePageChange(currentPage + 1)}
-						disabled={currentPage === totalPages}>
-						Next
-					</button>
+					{data.length === 100 && (
+						<FontAwesomeIcon
+							className="pagination-icon"
+							icon="angle-right"
+							fade
+							size="2xl"
+							onClick={() => handlePageChange(currentPage + 1)}
+						/>
+					)}
 				</div>
 			</div>
 		</>

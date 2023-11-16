@@ -1,0 +1,580 @@
+@charset "UTF-8";
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap");
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+body {
+  background: #121212;
+}
+
+h1 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  font-size: 52px;
+  text-align: center;
+  color: white;
+  padding: 40px 0;
+}
+
+h2 {
+  text-align: center;
+  white-space: nowrap; /* Empêche le texte de passer à la ligne */
+  overflow: hidden; /* Cache le texte qui dépasse */
+  text-overflow: ellipsis; /* Affiche les points de suspension (...) pour le texte qui dépasse */
+}
+
+p {
+  color: white;
+  font-size: 20px;
+  font-family: "Montserrat", sans-serif;
+  padding: 0 0 40px;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.neon-border {
+  border: 1px solid white; /* Couleur de la bordure */
+  border-radius: 5px;
+}
+
+.neon-border:before,
+.neon-border:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 1px solid white; /* Couleur de la bordure */
+  border-radius: 5px;
+  opacity: 0;
+  z-index: -1;
+}
+
+.neon-border:before {
+  top: 0;
+  left: 0;
+}
+
+.neon-border:after {
+  bottom: 0;
+  right: 0;
+}
+
+@keyframes neon {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.neon-border:hover:before,
+.neon-border:hover:after {
+  animation: neon 1s infinite;
+}
+
+header {
+  background-color: rgba(0, 0, 0, 0.7); /* Fond sombre transparent */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 15px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Ombre en relief */
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px); /* Effet de flou sur le fond */
+  border-bottom: 1px solid white; /* Couleur de la bordure */
+  border-radius: 5px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Ajouter une transition douce */
+}
+header .container-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+header .container-header .logo img {
+  width: 75px;
+  padding: 10px;
+  background-color: #d40317;
+}
+header .container-header nav {
+  display: none;
+}
+header .container-header .burger-menu {
+  margin-right: 10px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  box-sizing: border-box;
+}
+header .container-header .burger-menu .bar {
+  width: 30px;
+  height: 4px;
+  background-color: #d40317;
+  transition: 0.3s;
+}
+header .container-header .burger-menu.open .bar:first-child {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+header .container-header .burger-menu.open .bar:nth-child(2) {
+  opacity: 0;
+}
+header .container-header .burger-menu.open .bar:last-child {
+  transform: rotate(45deg) translate(-5px, -6px);
+}
+header .container-header .container-mobile {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  top: 83px;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Ombre en relief */
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px); /* Effet de flou sur le fond */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Ajouter une transition douce */
+  height: 200px;
+  width: 100%;
+  z-index: -1;
+}
+header .container-header .container-mobile nav {
+  display: block;
+}
+header .container-header .container-mobile nav a {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.background {
+  background-image: url("../assets/images/1582.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: -2;
+}
+.background h1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  width: 100px;
+  margin: 0 8px;
+  padding: 1px;
+  border: 1px solid white; /* Couleur de la bordure */
+  border-radius: 5px;
+}
+.card img {
+  width: 100px;
+}
+.card h2 {
+  margin-bottom: 5px;
+}
+.card p {
+  display: none;
+}
+
+.pagination {
+  text-align: center;
+  margin: 10px 0 30px;
+}
+.pagination .disabled {
+  display: none;
+}
+.pagination svg {
+  color: #d40317;
+}
+.pagination span {
+  font-family: "Montserrat", sans-serif;
+  color: white;
+  margin: 0 20px;
+}
+
+.container-characters,
+.container-comics,
+.container-favorites,
+.character-container,
+.comic-container {
+  margin-top: 84px;
+}
+.container-characters .search-bar,
+.container-comics .search-bar,
+.container-favorites .search-bar,
+.character-container .search-bar,
+.comic-container .search-bar {
+  width: 95%;
+  margin: 0 auto;
+  position: relative;
+  margin-bottom: 40px;
+}
+.container-characters .search-bar input,
+.container-comics .search-bar input,
+.container-favorites .search-bar input,
+.character-container .search-bar input,
+.comic-container .search-bar input {
+  background-color: #f5f6f7;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  height: 37px;
+  outline: none;
+  padding-left: 40px;
+  width: 90%;
+}
+.container-characters .search-bar svg,
+.container-comics .search-bar svg,
+.container-favorites .search-bar svg,
+.character-container .search-bar svg,
+.comic-container .search-bar svg {
+  width: 1em;
+  color: #bbb;
+  left: 7px;
+  position: absolute;
+  top: 12px;
+  display: inline-block;
+  font-size: inherit;
+  height: 1em;
+  vertical-align: -0.125em;
+}
+.container-characters .characters,
+.container-characters .comics,
+.container-characters .favorites,
+.container-characters .character,
+.container-comics .characters,
+.container-comics .comics,
+.container-comics .favorites,
+.container-comics .character,
+.container-favorites .characters,
+.container-favorites .comics,
+.container-favorites .favorites,
+.container-favorites .character,
+.character-container .characters,
+.character-container .comics,
+.character-container .favorites,
+.character-container .character,
+.comic-container .characters,
+.comic-container .comics,
+.comic-container .favorites,
+.comic-container .character {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+.container-characters .characters .characters-card,
+.container-characters .comics .characters-card,
+.container-characters .favorites .characters-card,
+.container-characters .character .characters-card,
+.container-comics .characters .characters-card,
+.container-comics .comics .characters-card,
+.container-comics .favorites .characters-card,
+.container-comics .character .characters-card,
+.container-favorites .characters .characters-card,
+.container-favorites .comics .characters-card,
+.container-favorites .favorites .characters-card,
+.container-favorites .character .characters-card,
+.character-container .characters .characters-card,
+.character-container .comics .characters-card,
+.character-container .favorites .characters-card,
+.character-container .character .characters-card,
+.comic-container .characters .characters-card,
+.comic-container .comics .characters-card,
+.comic-container .favorites .characters-card,
+.comic-container .character .characters-card {
+  position: relative;
+}
+.container-characters .characters .characters-card a,
+.container-characters .comics .characters-card a,
+.container-characters .favorites .characters-card a,
+.container-characters .character .characters-card a,
+.container-comics .characters .characters-card a,
+.container-comics .comics .characters-card a,
+.container-comics .favorites .characters-card a,
+.container-comics .character .characters-card a,
+.container-favorites .characters .characters-card a,
+.container-favorites .comics .characters-card a,
+.container-favorites .favorites .characters-card a,
+.container-favorites .character .characters-card a,
+.character-container .characters .characters-card a,
+.character-container .comics .characters-card a,
+.character-container .favorites .characters-card a,
+.character-container .character .characters-card a,
+.comic-container .characters .characters-card a,
+.comic-container .comics .characters-card a,
+.comic-container .favorites .characters-card a,
+.comic-container .character .characters-card a {
+  padding: 10px;
+}
+.container-characters .characters .characters-card svg,
+.container-characters .comics .characters-card svg,
+.container-characters .favorites .characters-card svg,
+.container-characters .character .characters-card svg,
+.container-comics .characters .characters-card svg,
+.container-comics .comics .characters-card svg,
+.container-comics .favorites .characters-card svg,
+.container-comics .character .characters-card svg,
+.container-favorites .characters .characters-card svg,
+.container-favorites .comics .characters-card svg,
+.container-favorites .favorites .characters-card svg,
+.container-favorites .character .characters-card svg,
+.character-container .characters .characters-card svg,
+.character-container .comics .characters-card svg,
+.character-container .favorites .characters-card svg,
+.character-container .character .characters-card svg,
+.comic-container .characters .characters-card svg,
+.comic-container .comics .characters-card svg,
+.comic-container .favorites .characters-card svg,
+.comic-container .character .characters-card svg {
+  position: absolute;
+  top: 28%;
+  right: 10%;
+  z-index: 2;
+  color: #d40317;
+}
+.container-characters .characters .comics-card,
+.container-characters .comics .comics-card,
+.container-characters .favorites .comics-card,
+.container-characters .character .comics-card,
+.container-comics .characters .comics-card,
+.container-comics .comics .comics-card,
+.container-comics .favorites .comics-card,
+.container-comics .character .comics-card,
+.container-favorites .characters .comics-card,
+.container-favorites .comics .comics-card,
+.container-favorites .favorites .comics-card,
+.container-favorites .character .comics-card,
+.character-container .characters .comics-card,
+.character-container .comics .comics-card,
+.character-container .favorites .comics-card,
+.character-container .character .comics-card,
+.comic-container .characters .comics-card,
+.comic-container .comics .comics-card,
+.comic-container .favorites .comics-card,
+.comic-container .character .comics-card {
+  position: relative;
+}
+.container-characters .characters .comics-card a,
+.container-characters .comics .comics-card a,
+.container-characters .favorites .comics-card a,
+.container-characters .character .comics-card a,
+.container-comics .characters .comics-card a,
+.container-comics .comics .comics-card a,
+.container-comics .favorites .comics-card a,
+.container-comics .character .comics-card a,
+.container-favorites .characters .comics-card a,
+.container-favorites .comics .comics-card a,
+.container-favorites .favorites .comics-card a,
+.container-favorites .character .comics-card a,
+.character-container .characters .comics-card a,
+.character-container .comics .comics-card a,
+.character-container .favorites .comics-card a,
+.character-container .character .comics-card a,
+.comic-container .characters .comics-card a,
+.comic-container .comics .comics-card a,
+.comic-container .favorites .comics-card a,
+.comic-container .character .comics-card a {
+  padding: 10px;
+}
+.container-characters .characters .comics-card svg,
+.container-characters .comics .comics-card svg,
+.container-characters .favorites .comics-card svg,
+.container-characters .character .comics-card svg,
+.container-comics .characters .comics-card svg,
+.container-comics .comics .comics-card svg,
+.container-comics .favorites .comics-card svg,
+.container-comics .character .comics-card svg,
+.container-favorites .characters .comics-card svg,
+.container-favorites .comics .comics-card svg,
+.container-favorites .favorites .comics-card svg,
+.container-favorites .character .comics-card svg,
+.character-container .characters .comics-card svg,
+.character-container .comics .comics-card svg,
+.character-container .favorites .comics-card svg,
+.character-container .character .comics-card svg,
+.comic-container .characters .comics-card svg,
+.comic-container .comics .comics-card svg,
+.comic-container .favorites .comics-card svg,
+.comic-container .character .comics-card svg {
+  position: absolute;
+  top: 12%;
+  right: 12%;
+  z-index: 2;
+  color: #d40317;
+}
+
+.character-container,
+.comic-container {
+  position: relative;
+}
+.character-container .background,
+.comic-container .background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  opacity: 0.1;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.character-container p,
+.comic-container p {
+  width: 95%;
+  margin: 0 auto;
+}/*# sourceMappingURL=styles.css.map */

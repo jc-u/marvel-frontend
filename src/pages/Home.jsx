@@ -1,7 +1,7 @@
 const Home = () => {
 	return (
-		<div>
-			<h1>Marvel</h1>
+		<div className="background">
+			<h1>Bienvenue dans l'univers Marvel</h1>
 		</div>
 	);
 };

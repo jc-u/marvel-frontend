@@ -1,0 +1,19 @@
+.card {
+	width: 100px;
+	margin: 0 8px;
+	padding: 1px;
+	border: 1px solid white; /* Couleur de la bordure */
+	border-radius: 5px;
+
+	img {
+		width: 100px;
+	}
+
+	h2 {
+		margin-bottom: 5px;
+	}
+
+	p {
+		display: none;
+	}
+}

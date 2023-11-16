@@ -1,0 +1,18 @@
+.pagination {
+	text-align: center;
+	margin: 10px 0 30px;
+
+	.disabled {
+		display: none;
+	}
+
+	svg {
+		color: $primary;
+	}
+
+	span {
+		font-family: "Montserrat", sans-serif;
+		color: white;
+		margin: 0 20px;
+	}
+}

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Characters = () => {
 	const [data, setData] = useState([]);
@@ -22,6 +23,8 @@ const Characters = () => {
 				setData(response.data.results);
 				setTotalPages(response.data.totalPages);
 				setIsLoading(false);
+				// Scroll to the top when changing the page
+				window.scrollTo(0, 0);
 			} catch (error) {
 				console.error("Error fetching characters:", error.message);
 				setIsLoading(false);
@@ -31,7 +34,7 @@ const Characters = () => {
 		fetchData();
 	}, [currentPage, searchTerm]);
 
-	console.log(favorites);
+	console.log(favorites, totalPages);
 
 	useEffect(() => {
 		// Get favorites from localStorage
@@ -77,59 +80,72 @@ const Characters = () => {
 		<p>Loading...</p>
 	) : (
 		<div className="container-characters">
-			<h1>Characters</h1>
+			<h1>Personnages</h1>
 			<div className="search-bar">
 				<input
 					type="text"
-					placeholder="Search by name"
+					placeholder="Recherche par nom"
 					value={searchTerm}
 					onChange={handleSearch}
 				/>
+				<FontAwesomeIcon icon="magnifying-glass" />
 			</div>
 			<div className="characters">
-				{data.map((character) => (
-					<>
-						<button
-							onClick={() =>
-								handleToggleFavorite(character._id, {
-									name: character.name,
-									description: character.description,
-									thumbnail: {
-										path: character.thumbnail.path,
-										extension: character.thumbnail.extension,
-									},
-								})
-							}>
-							LOVE
-						</button>
-						<Link to={`/personnages/${character._id}`} key={character._id}>
-							<div className="characters-card">
-								<img
-									src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
-									alt={character.name}
-									onError={(e) => {
-										e.target.src = "/path/to/placeholder-image.jpg";
-									}}
-								/>
-								<h2>{character.name}</h2>
-								<p>{character.description}</p>
-							</div>
-						</Link>
-					</>
-				))}
+				{data.map((character) => {
+					return (
+						<div key={character._id} className="characters-card ">
+							<>
+								<Link to={`/personnages/${character._id}`}>
+									<div className="character-card card">
+										<h2>{character.name}</h2>
+										<img
+											src={`${character.thumbnail.path}/standard_medium.${character.thumbnail.extension}`}
+											alt={character.name}
+										/>
+
+										<p>{character.description}</p>
+									</div>
+								</Link>
+							</>
+							<FontAwesomeIcon
+								icon={
+									favorites[character._id] ? ["fas", "heart"] : ["far", "heart"]
+								}
+								onClick={() =>
+									handleToggleFavorite(character._id, {
+										type: "character",
+										name: character.name,
+										description: character.description,
+										thumbnail: {
+											path: character.thumbnail.path,
+											extension: character.thumbnail.extension,
+										},
+									})
+								}
+							/>
+						</div>
+					);
+				})}
 			</div>
 			<div className="pagination">
-				<button
+				<FontAwesomeIcon
+					className={currentPage === 1 ? "disabled" : ""}
+					icon="angle-left"
+					fade
+					size="2xl"
 					onClick={() => handlePageChange(currentPage - 1)}
-					disabled={currentPage === 1}>
-					Previous
-				</button>
+				/>
+
 				<span>{currentPage}</span>
-				<button
-					onClick={() => handlePageChange(currentPage + 1)}
-					disabled={currentPage === totalPages}>
-					Next
-				</button>
+				{data.length === 100 && (
+					<FontAwesomeIcon
+						className="pagination-icon"
+						icon="angle-right"
+						fade
+						size="2xl"
+						onClick={() => handlePageChange(currentPage + 1)}
+					/>
+				)}
 			</div>
 		</div>
 	);
