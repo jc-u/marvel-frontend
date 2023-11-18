@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Pagination from "../components/Pagination";
 
 const Characters = () => {
 	const [data, setData] = useState([]);
@@ -49,10 +50,10 @@ const Characters = () => {
 		const baseImagePath = character.thumbnail.path;
 		const extension = character.thumbnail.extension;
 
-		// Obtenir la largeur de l'écran
+		// Get screen width
 		const windowWidth = window.innerWidth;
 
-		// Chemin d'image en fonction de la largeur de l'écran
+		// Image path according to screen width
 		let imagePath;
 		if (windowWidth < 600) {
 			imagePath = `${baseImagePath}/standard_medium.${extension}`;
@@ -88,10 +89,6 @@ const Characters = () => {
 		);
 	};
 
-	const handlePageChange = (newPage) => {
-		setCurrentPage(newPage);
-	};
-
 	const handleSearch = (e) => {
 		setSearchTerm(e.target.value);
 	};
@@ -123,7 +120,9 @@ const Characters = () => {
 											alt={character.name}
 										/>
 
-										<p>{character.description}</p>
+										<div className="character-description">
+											{character.description && <p> {character.description}</p>}
+										</div>
 									</div>
 								</Link>
 							</>
@@ -147,26 +146,11 @@ const Characters = () => {
 					);
 				})}
 			</div>
-			<div className="pagination">
-				<FontAwesomeIcon
-					className={currentPage === 1 ? "disabled" : ""}
-					icon="angle-left"
-					fade
-					size="2xl"
-					onClick={() => handlePageChange(currentPage - 1)}
-				/>
-
-				<span>{currentPage}</span>
-				{data.length === 100 && (
-					<FontAwesomeIcon
-						className="pagination-icon"
-						icon="angle-right"
-						fade
-						size="2xl"
-						onClick={() => handlePageChange(currentPage + 1)}
-					/>
-				)}
-			</div>
+			<Pagination
+				currentPage={currentPage}
+				setCurrentPage={setCurrentPage}
+				data={data}
+			/>
 		</div>
 	);
 };

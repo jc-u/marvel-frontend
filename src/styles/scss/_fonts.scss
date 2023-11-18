@@ -24,14 +24,14 @@ h3 {
 	font-weight: bold;
 	font-size: 22px;
 	text-align: center;
-	white-space: nowrap; /* Empêche le texte de passer à la ligne */
-	overflow: hidden; /* Cache le texte qui dépasse */
-	text-overflow: ellipsis; /* Affiche les points de suspension (...) pour le texte qui dépasse */
+	white-space: nowrap; /* Prevents text from wrapping */
+	overflow: hidden;
+	text-overflow: ellipsis; /* Displays ellipsis (...) for overflowing text */
 }
 
 p {
 	color: white;
-	font-size: 20px;
+	font-size: 16px;
 	font-family: "Montserrat", sans-serif;
 	padding: 0 0 40px;
 }

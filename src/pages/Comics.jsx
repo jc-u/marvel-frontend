@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Pagination from "../components/Pagination";
 
 const Comics = () => {
 	const [data, setData] = useState([]);
@@ -12,20 +13,20 @@ const Comics = () => {
 	const [favorites, setFavorites] = useState({});
 
 	const customSort = (a, b) => {
-		// Fonction pour extraire la partie lettre du titre
+		// Function to extract the letter part of the title
 		const getLetterPart = (str) => str.replace(/[0-9]/g, "");
 
 		const letterPartA = getLetterPart(a.title.toUpperCase());
 		const letterPartB = getLetterPart(b.title.toUpperCase());
 
-		// Comparaison des parties lettres en fonction du titre
+		// Comparison of letter parts by title
 		if (letterPartA < letterPartB) {
 			return -1;
 		}
 		if (letterPartA > letterPartB) {
 			return 1;
 		}
-		return 0; // Les parties lettres sont égales
+		return 0; // Letter parts are equal
 	};
 
 	useEffect(() => {
@@ -87,10 +88,10 @@ const Comics = () => {
 		const baseImagePath = comic.thumbnail.path;
 		const extension = comic.thumbnail.extension;
 
-		// Obtenir la largeur de l'écran
+		// Get screen width
 		const windowWidth = window.innerWidth;
 
-		// Chemin d'image en fonction de la largeur de l'écran
+		// Image path according to screen widthn
 		let imagePath;
 		if (windowWidth < 600) {
 			imagePath = `${baseImagePath}/portrait_medium.${extension}`;
@@ -101,10 +102,6 @@ const Comics = () => {
 		}
 
 		return imagePath;
-	};
-
-	const handlePageChange = (newPage) => {
-		setCurrentPage(newPage);
 	};
 
 	const handleSearch = (e) => {
@@ -141,7 +138,9 @@ const Comics = () => {
 												}}
 											/>
 											<h3>{comic.title}</h3>
-											<p>{comic.description}</p>
+											<div className="comic-description">
+												{comic.description && <p> {comic.description}</p>}
+											</div>
 										</div>
 									</Link>
 								</>
@@ -165,26 +164,11 @@ const Comics = () => {
 						);
 					})}
 				</div>
-				<div className="pagination">
-					<FontAwesomeIcon
-						className={currentPage === 1 ? "disabled" : ""}
-						icon="angle-left"
-						fade
-						size="2xl"
-						onClick={() => handlePageChange(currentPage - 1)}
-					/>
-
-					<span>{currentPage}</span>
-					{data.length === 100 && (
-						<FontAwesomeIcon
-							className="pagination-icon"
-							icon="angle-right"
-							fade
-							size="2xl"
-							onClick={() => handlePageChange(currentPage + 1)}
-						/>
-					)}
-				</div>
+				<Pagination
+					currentPage={currentPage}
+					setCurrentPage={setCurrentPage}
+					data={data}
+				/>
 			</div>
 		</>
 	);

@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -161,14 +160,14 @@ h3 {
   font-weight: bold;
   font-size: 22px;
   text-align: center;
-  white-space: nowrap; /* Empêche le texte de passer à la ligne */
-  overflow: hidden; /* Cache le texte qui dépasse */
-  text-overflow: ellipsis; /* Affiche les points de suspension (...) pour le texte qui dépasse */
+  white-space: nowrap; /* Prevents text from wrapping */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Displays ellipsis (...) for overflowing text */
 }
 
 p {
   color: white;
-  font-size: 20px;
+  font-size: 16px;
   font-family: "Montserrat", sans-serif;
   padding: 0 0 40px;
 }
@@ -222,19 +221,19 @@ a {
 }
 
 header {
-  background-color: rgba(0, 0, 0, 0.7); /* Fond sombre transparent */
+  background-color: rgba(0, 0, 0, 0.7); /* Dark transparent background */
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
   padding: 15px;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Ombre en relief */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Shadow relief */
   -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px); /* Effet de flou sur le fond */
-  border-bottom: 1px solid white; /* Couleur de la bordure */
+          backdrop-filter: blur(10px); /* Background blur effect */
+  border-bottom: 1px solid white;
   border-radius: 5px;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Ajouter une transition douce */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* transition douce */
 }
 header .container-header {
   display: flex;
@@ -283,10 +282,10 @@ header .container-header .container-mobile {
   top: 83px;
   right: 0;
   background-color: rgba(0, 0, 0, 0.7);
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Ombre en relief */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
   -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px); /* Effet de flou sur le fond */
-  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Ajouter une transition douce */
+          backdrop-filter: blur(10px);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
   height: 200px;
   width: 100%;
   z-index: -1;
@@ -327,15 +326,32 @@ header .container-header .container-mobile nav a:hover {
 }
 
 .card {
+  position: relative;
   width: 100px;
   margin: 0 8px;
   padding: 1px;
-  border: 1px solid white; /* Couleur de la bordure */
+  border: 1px solid white;
   border-radius: 5px;
   transition: all 0.3s ease;
 }
 .card:hover h3 {
   color: #d40317;
+}
+.card:hover p {
+  opacity: 1;
+  display: block;
+  max-height: 100px;
+  position: absolute;
+  bottom: 10%;
+  background-color: rgba(18, 18, 18, 0.9);
+  width: 89%;
+  padding: 10px;
+  margin: 15px auto;
+  display: -webkit-box;
+  -webkit-line-clamp: 7; /* Number of lines to display */
+  -webkit-box-orient: vertical;
+  overflow: hidden; /* Hide protruding text */
+  text-overflow: ellipsis; /* Displays ellipsis (...) for overflowing text */
 }
 .card img {
   width: 100px;
@@ -345,6 +361,7 @@ header .container-header .container-mobile nav a:hover {
   margin-bottom: 5px;
 }
 .card p {
+  opacity: 0;
   display: none;
 }
 
@@ -386,6 +403,17 @@ header .container-header .container-mobile nav a:hover {
     height: 252px;
   }
 }
+.card:hover .character-description p {
+  bottom: 2%;
+  text-align: center;
+}
+
+.card:hover .comic-description p {
+  bottom: -6%;
+  text-align: center;
+  width: 87%;
+}
+
 .pagination {
   text-align: center;
   margin: 10px 0 30px;
@@ -615,6 +643,13 @@ header .container-header .container-mobile nav a:hover {
 }
 
 @media (min-width: 600px) {
+  .container-characters .search-bar input,
+  .container-comics .search-bar input,
+  .container-favorites .search-bar input,
+  .character-container .search-bar input,
+  .comic-container .search-bar input {
+    width: 94%;
+  }
   .container-characters .characters .characters-card svg,
   .container-characters .comics .characters-card svg,
   .container-characters .favorites .characters-card svg,
@@ -711,6 +746,20 @@ header .container-header .container-mobile nav a:hover {
   }
 }
 @media (min-width: 1280px) {
+  .container-characters .search-bar,
+  .container-comics .search-bar,
+  .container-favorites .search-bar,
+  .character-container .search-bar,
+  .comic-container .search-bar {
+    width: 1200px;
+  }
+  .container-characters .search-bar input,
+  .container-comics .search-bar input,
+  .container-favorites .search-bar input,
+  .character-container .search-bar input,
+  .comic-container .search-bar input {
+    width: 1158px;
+  }
   .container-characters .characters,
   .container-characters .comics,
   .container-characters .favorites,
@@ -842,6 +891,7 @@ header .container-header .container-mobile nav a:hover {
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  height: unset;
 }
 .character-container p,
 .comic-container p {

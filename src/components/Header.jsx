@@ -15,16 +15,16 @@ const Header = () => {
 
 	useEffect(() => {
 		const handleClickOutside = (event) => {
-			// Ferme le menu si le clic n'est pas à l'intérieur du menu
+			// Closes menu if click is not inside menu
 			if (isMenuOpen && !event.target.closest(".burger-menu")) {
 				setMenuOpen(false);
 			}
 		};
 
-		// Ajoute l'écouteur d'événements au montage du composant
+		// Adds event listener to component assembly
 		window.addEventListener("click", handleClickOutside);
 
-		// Nettoyer l'écouteur d'événements lors du démontage du composant
+		// Clean event listener when unmounting component
 		return () => {
 			window.removeEventListener("click", handleClickOutside);
 		};

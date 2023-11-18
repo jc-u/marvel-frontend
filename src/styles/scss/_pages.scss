@@ -84,6 +84,7 @@
 	.comic-container {
 		.search-bar {
 			input {
+				width: 94%;
 			}
 
 			svg {
@@ -134,7 +135,9 @@
 	.character-container,
 	.comic-container {
 		.search-bar {
+			width: 1200px;
 			input {
+				width: 1158px;
 			}
 
 			svg {

@@ -56,7 +56,11 @@ const Favorites = () => {
 											alt={favorites[id].name}
 										/>
 
-										<p>{favorites[id].description}</p>
+										<div className="character-description">
+											{favorites[id].description && (
+												<p> {favorites[id].description}</p>
+											)}
+										</div>
 									</div>
 								</Link>
 							)
@@ -75,7 +79,11 @@ const Favorites = () => {
 											alt={favorites[id].title}
 										/>
 										<h3>{favorites[id].name}</h3>
-										<p>{favorites[id].description}</p>
+										<div className="comic-description">
+											{favorites[id].description && (
+												<p> {favorites[id].description}</p>
+											)}
+										</div>
 									</div>
 								</Link>
 							)

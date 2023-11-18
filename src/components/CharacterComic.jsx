@@ -25,10 +25,10 @@ const CharacterComic = ({ comic }) => {
 		const baseImagePath = comic.thumbnail.path;
 		const extension = comic.thumbnail.extension;
 
-		// Obtenir la largeur de l'écran
+		// Get screen width
 		const windowWidth = window.innerWidth;
 
-		// Chemin d'image en fonction de la largeur de l'écran
+		// Image path according to screen width
 		let imagePath;
 		if (windowWidth < 600) {
 			imagePath = `${baseImagePath}/portrait_medium.${extension}`;
