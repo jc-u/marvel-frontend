@@ -12,6 +12,17 @@ h1 {
 }
 
 h2 {
+	color: white;
+	font-family: "Montserrat", sans-serif;
+	font-weight: bold;
+	font-size: 30px;
+}
+
+h3 {
+	color: white;
+	font-family: "Montserrat", sans-serif;
+	font-weight: bold;
+	font-size: 22px;
 	text-align: center;
 	white-space: nowrap; /* Empêche le texte de passer à la ligne */
 	overflow: hidden; /* Cache le texte qui dépasse */

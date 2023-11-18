@@ -1,5 +1,5 @@
 .neon-border {
-	border: 1px solid white; /* Couleur de la bordure */
+	border: 1px solid $primary;
 	border-radius: 5px;
 }
 
@@ -9,7 +9,7 @@
 	position: absolute;
 	width: 100%;
 	height: 100%;
-	border: 1px solid white; /* Couleur de la bordure */
+	border: 1px solid $primary;
 	border-radius: 5px;
 	opacity: 0;
 	z-index: -1;

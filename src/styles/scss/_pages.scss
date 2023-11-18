@@ -40,6 +40,7 @@
 		display: flex;
 		flex-wrap: wrap;
 		margin: 0 auto;
+		justify-content: center;
 
 		.characters-card {
 			position: relative;
@@ -70,6 +71,109 @@
 				right: 12%;
 				z-index: 2;
 				color: $primary;
+			}
+		}
+	}
+}
+
+@media (min-width: 600px) {
+	.container-characters,
+	.container-comics,
+	.container-favorites,
+	.character-container,
+	.comic-container {
+		.search-bar {
+			input {
+			}
+
+			svg {
+			}
+		}
+		.characters,
+		.comics,
+		.favorites,
+		.character {
+			.characters-card {
+				a {
+				}
+
+				svg {
+					top: 18%;
+					right: 13%;
+					font-size: 30px;
+				}
+			}
+
+			.comics-card {
+				a {
+					.card {
+						height: 225px;
+						width: 150px;
+
+						img {
+							height: 225px;
+							width: 150px;
+						}
+					}
+				}
+
+				svg {
+					top: 18%;
+					right: 13%;
+					font-size: 30px;
+				}
+			}
+		}
+	}
+}
+
+@media (min-width: 1280px) {
+	.container-characters,
+	.container-comics,
+	.container-favorites,
+	.character-container,
+	.comic-container {
+		.search-bar {
+			input {
+			}
+
+			svg {
+			}
+		}
+		.characters,
+		.comics,
+		.favorites,
+		.character {
+			width: 1200px;
+			.characters-card {
+				a {
+				}
+
+				svg {
+					top: 18%;
+					right: 13%;
+					font-size: 30px;
+				}
+			}
+
+			.comics-card {
+				a {
+					.card {
+						height: 252px;
+						width: 168px;
+
+						img {
+							height: 252px;
+							width: 168px;
+						}
+					}
+				}
+
+				svg {
+					top: 18%;
+					right: 13%;
+					font-size: 30px;
+				}
 			}
 		}
 	}

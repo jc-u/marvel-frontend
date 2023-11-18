@@ -83,6 +83,26 @@ const Comics = () => {
 		localStorage.setItem("comicFavorites", JSON.stringify(updatedFavorites));
 	};
 
+	const getImagePath = (type, comic) => {
+		const baseImagePath = comic.thumbnail.path;
+		const extension = comic.thumbnail.extension;
+
+		// Obtenir la largeur de l'écran
+		const windowWidth = window.innerWidth;
+
+		// Chemin d'image en fonction de la largeur de l'écran
+		let imagePath;
+		if (windowWidth < 600) {
+			imagePath = `${baseImagePath}/portrait_medium.${extension}`;
+		} else if (windowWidth < 1200) {
+			imagePath = `${baseImagePath}/portrait_xlarge.${extension}`;
+		} else {
+			imagePath = `${baseImagePath}/portrait_fantastic.${extension}`;
+		}
+
+		return imagePath;
+	};
+
 	const handlePageChange = (newPage) => {
 		setCurrentPage(newPage);
 	};
@@ -112,15 +132,15 @@ const Comics = () => {
 							<div key={comic._id} className="comics-card ">
 								<>
 									<Link to={`/comics/${comic._id}`} key={comic._id}>
-										<div className="comic-card card">
+										<div className="comic-card card neon-border">
 											<img
-												src={`${comic.thumbnail.path}/portrait_medium.${comic.thumbnail.extension}`}
-												alt={comic.title}
+												src={getImagePath(comic.type, comic)}
+												alt={comic.name}
 												onError={(e) => {
 													e.target.src = `${comic.thumbnail.path}.${comic.thumbnail.extension}`;
 												}}
 											/>
-											<h2>{comic.title}</h2>
+											<h3>{comic.title}</h3>
 											<p>{comic.description}</p>
 										</div>
 									</Link>

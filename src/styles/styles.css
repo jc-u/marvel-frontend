@@ -149,6 +149,17 @@ h1 {
 }
 
 h2 {
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+h3 {
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  font-size: 22px;
   text-align: center;
   white-space: nowrap; /* Empêche le texte de passer à la ligne */
   overflow: hidden; /* Cache le texte qui dépasse */
@@ -171,7 +182,7 @@ a {
 }
 
 .neon-border {
-  border: 1px solid white; /* Couleur de la bordure */
+  border: 1px solid #d40317;
   border-radius: 5px;
 }
 
@@ -181,7 +192,7 @@ a {
   position: absolute;
   width: 100%;
   height: 100%;
-  border: 1px solid white; /* Couleur de la bordure */
+  border: 1px solid #d40317;
   border-radius: 5px;
   opacity: 0;
   z-index: -1;
@@ -235,9 +246,6 @@ header .container-header .logo img {
   padding: 10px;
   background-color: #d40317;
 }
-header .container-header nav {
-  display: none;
-}
 header .container-header .burger-menu {
   margin-right: 10px;
   cursor: pointer;
@@ -290,6 +298,10 @@ header .container-header .container-mobile nav a {
   display: flex;
   justify-content: center;
   margin: 20px 0;
+  transition: all 0.3s ease;
+}
+header .container-header .container-mobile nav a:hover {
+  color: #d40317;
 }
 
 .background {
@@ -320,17 +332,60 @@ header .container-header .container-mobile nav a {
   padding: 1px;
   border: 1px solid white; /* Couleur de la bordure */
   border-radius: 5px;
+  transition: all 0.3s ease;
+}
+.card:hover h3 {
+  color: #d40317;
 }
 .card img {
   width: 100px;
+  margin: 0 auto;
 }
-.card h2 {
+.card h3 {
   margin-bottom: 5px;
 }
 .card p {
   display: none;
 }
 
+@media (min-width: 600px) {
+  .card {
+    width: 230px;
+    margin: 0 10px 20px;
+    padding: 2px;
+  }
+  .card img {
+    width: 200px;
+    display: block;
+    margin: 0 auto 20px;
+  }
+  .character .card {
+    width: 200px;
+  }
+  .character .card img {
+    width: 150px;
+    height: 225px;
+  }
+}
+@media (min-width: 1280px) {
+  .card {
+    width: 274px;
+    margin: 0 10px 20px;
+    padding: 2px;
+  }
+  .card img {
+    width: 250px;
+    display: block;
+    margin: 0 auto 20px;
+  }
+  .character .card {
+    width: 200px;
+  }
+  .character .card img {
+    width: 168px;
+    height: 252px;
+  }
+}
 .pagination {
   text-align: center;
   margin: 10px 0 30px;
@@ -416,6 +471,7 @@ header .container-header .container-mobile nav a {
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto;
+  justify-content: center;
 }
 .container-characters .characters .characters-card,
 .container-characters .comics .characters-card,
@@ -558,6 +614,220 @@ header .container-header .container-mobile nav a {
   color: #d40317;
 }
 
+@media (min-width: 600px) {
+  .container-characters .characters .characters-card svg,
+  .container-characters .comics .characters-card svg,
+  .container-characters .favorites .characters-card svg,
+  .container-characters .character .characters-card svg,
+  .container-comics .characters .characters-card svg,
+  .container-comics .comics .characters-card svg,
+  .container-comics .favorites .characters-card svg,
+  .container-comics .character .characters-card svg,
+  .container-favorites .characters .characters-card svg,
+  .container-favorites .comics .characters-card svg,
+  .container-favorites .favorites .characters-card svg,
+  .container-favorites .character .characters-card svg,
+  .character-container .characters .characters-card svg,
+  .character-container .comics .characters-card svg,
+  .character-container .favorites .characters-card svg,
+  .character-container .character .characters-card svg,
+  .comic-container .characters .characters-card svg,
+  .comic-container .comics .characters-card svg,
+  .comic-container .favorites .characters-card svg,
+  .comic-container .character .characters-card svg {
+    top: 18%;
+    right: 13%;
+    font-size: 30px;
+  }
+  .container-characters .characters .comics-card a .card,
+  .container-characters .comics .comics-card a .card,
+  .container-characters .favorites .comics-card a .card,
+  .container-characters .character .comics-card a .card,
+  .container-comics .characters .comics-card a .card,
+  .container-comics .comics .comics-card a .card,
+  .container-comics .favorites .comics-card a .card,
+  .container-comics .character .comics-card a .card,
+  .container-favorites .characters .comics-card a .card,
+  .container-favorites .comics .comics-card a .card,
+  .container-favorites .favorites .comics-card a .card,
+  .container-favorites .character .comics-card a .card,
+  .character-container .characters .comics-card a .card,
+  .character-container .comics .comics-card a .card,
+  .character-container .favorites .comics-card a .card,
+  .character-container .character .comics-card a .card,
+  .comic-container .characters .comics-card a .card,
+  .comic-container .comics .comics-card a .card,
+  .comic-container .favorites .comics-card a .card,
+  .comic-container .character .comics-card a .card {
+    height: 225px;
+    width: 150px;
+  }
+  .container-characters .characters .comics-card a .card img,
+  .container-characters .comics .comics-card a .card img,
+  .container-characters .favorites .comics-card a .card img,
+  .container-characters .character .comics-card a .card img,
+  .container-comics .characters .comics-card a .card img,
+  .container-comics .comics .comics-card a .card img,
+  .container-comics .favorites .comics-card a .card img,
+  .container-comics .character .comics-card a .card img,
+  .container-favorites .characters .comics-card a .card img,
+  .container-favorites .comics .comics-card a .card img,
+  .container-favorites .favorites .comics-card a .card img,
+  .container-favorites .character .comics-card a .card img,
+  .character-container .characters .comics-card a .card img,
+  .character-container .comics .comics-card a .card img,
+  .character-container .favorites .comics-card a .card img,
+  .character-container .character .comics-card a .card img,
+  .comic-container .characters .comics-card a .card img,
+  .comic-container .comics .comics-card a .card img,
+  .comic-container .favorites .comics-card a .card img,
+  .comic-container .character .comics-card a .card img {
+    height: 225px;
+    width: 150px;
+  }
+  .container-characters .characters .comics-card svg,
+  .container-characters .comics .comics-card svg,
+  .container-characters .favorites .comics-card svg,
+  .container-characters .character .comics-card svg,
+  .container-comics .characters .comics-card svg,
+  .container-comics .comics .comics-card svg,
+  .container-comics .favorites .comics-card svg,
+  .container-comics .character .comics-card svg,
+  .container-favorites .characters .comics-card svg,
+  .container-favorites .comics .comics-card svg,
+  .container-favorites .favorites .comics-card svg,
+  .container-favorites .character .comics-card svg,
+  .character-container .characters .comics-card svg,
+  .character-container .comics .comics-card svg,
+  .character-container .favorites .comics-card svg,
+  .character-container .character .comics-card svg,
+  .comic-container .characters .comics-card svg,
+  .comic-container .comics .comics-card svg,
+  .comic-container .favorites .comics-card svg,
+  .comic-container .character .comics-card svg {
+    top: 18%;
+    right: 13%;
+    font-size: 30px;
+  }
+}
+@media (min-width: 1280px) {
+  .container-characters .characters,
+  .container-characters .comics,
+  .container-characters .favorites,
+  .container-characters .character,
+  .container-comics .characters,
+  .container-comics .comics,
+  .container-comics .favorites,
+  .container-comics .character,
+  .container-favorites .characters,
+  .container-favorites .comics,
+  .container-favorites .favorites,
+  .container-favorites .character,
+  .character-container .characters,
+  .character-container .comics,
+  .character-container .favorites,
+  .character-container .character,
+  .comic-container .characters,
+  .comic-container .comics,
+  .comic-container .favorites,
+  .comic-container .character {
+    width: 1200px;
+  }
+  .container-characters .characters .characters-card svg,
+  .container-characters .comics .characters-card svg,
+  .container-characters .favorites .characters-card svg,
+  .container-characters .character .characters-card svg,
+  .container-comics .characters .characters-card svg,
+  .container-comics .comics .characters-card svg,
+  .container-comics .favorites .characters-card svg,
+  .container-comics .character .characters-card svg,
+  .container-favorites .characters .characters-card svg,
+  .container-favorites .comics .characters-card svg,
+  .container-favorites .favorites .characters-card svg,
+  .container-favorites .character .characters-card svg,
+  .character-container .characters .characters-card svg,
+  .character-container .comics .characters-card svg,
+  .character-container .favorites .characters-card svg,
+  .character-container .character .characters-card svg,
+  .comic-container .characters .characters-card svg,
+  .comic-container .comics .characters-card svg,
+  .comic-container .favorites .characters-card svg,
+  .comic-container .character .characters-card svg {
+    top: 18%;
+    right: 13%;
+    font-size: 30px;
+  }
+  .container-characters .characters .comics-card a .card,
+  .container-characters .comics .comics-card a .card,
+  .container-characters .favorites .comics-card a .card,
+  .container-characters .character .comics-card a .card,
+  .container-comics .characters .comics-card a .card,
+  .container-comics .comics .comics-card a .card,
+  .container-comics .favorites .comics-card a .card,
+  .container-comics .character .comics-card a .card,
+  .container-favorites .characters .comics-card a .card,
+  .container-favorites .comics .comics-card a .card,
+  .container-favorites .favorites .comics-card a .card,
+  .container-favorites .character .comics-card a .card,
+  .character-container .characters .comics-card a .card,
+  .character-container .comics .comics-card a .card,
+  .character-container .favorites .comics-card a .card,
+  .character-container .character .comics-card a .card,
+  .comic-container .characters .comics-card a .card,
+  .comic-container .comics .comics-card a .card,
+  .comic-container .favorites .comics-card a .card,
+  .comic-container .character .comics-card a .card {
+    height: 252px;
+    width: 168px;
+  }
+  .container-characters .characters .comics-card a .card img,
+  .container-characters .comics .comics-card a .card img,
+  .container-characters .favorites .comics-card a .card img,
+  .container-characters .character .comics-card a .card img,
+  .container-comics .characters .comics-card a .card img,
+  .container-comics .comics .comics-card a .card img,
+  .container-comics .favorites .comics-card a .card img,
+  .container-comics .character .comics-card a .card img,
+  .container-favorites .characters .comics-card a .card img,
+  .container-favorites .comics .comics-card a .card img,
+  .container-favorites .favorites .comics-card a .card img,
+  .container-favorites .character .comics-card a .card img,
+  .character-container .characters .comics-card a .card img,
+  .character-container .comics .comics-card a .card img,
+  .character-container .favorites .comics-card a .card img,
+  .character-container .character .comics-card a .card img,
+  .comic-container .characters .comics-card a .card img,
+  .comic-container .comics .comics-card a .card img,
+  .comic-container .favorites .comics-card a .card img,
+  .comic-container .character .comics-card a .card img {
+    height: 252px;
+    width: 168px;
+  }
+  .container-characters .characters .comics-card svg,
+  .container-characters .comics .comics-card svg,
+  .container-characters .favorites .comics-card svg,
+  .container-characters .character .comics-card svg,
+  .container-comics .characters .comics-card svg,
+  .container-comics .comics .comics-card svg,
+  .container-comics .favorites .comics-card svg,
+  .container-comics .character .comics-card svg,
+  .container-favorites .characters .comics-card svg,
+  .container-favorites .comics .comics-card svg,
+  .container-favorites .favorites .comics-card svg,
+  .container-favorites .character .comics-card svg,
+  .character-container .characters .comics-card svg,
+  .character-container .comics .comics-card svg,
+  .character-container .favorites .comics-card svg,
+  .character-container .character .comics-card svg,
+  .comic-container .characters .comics-card svg,
+  .comic-container .comics .comics-card svg,
+  .comic-container .favorites .comics-card svg,
+  .comic-container .character .comics-card svg {
+    top: 18%;
+    right: 13%;
+    font-size: 30px;
+  }
+}
 .character-container,
 .comic-container {
   position: relative;
@@ -577,4 +847,42 @@ header .container-header .container-mobile nav a {
 .comic-container p {
   width: 95%;
   margin: 0 auto;
+  text-align: center;
+}
+
+.container-favorites .favorites h2 {
+  margin-bottom: 20px;
+}
+.container-favorites .favorites .card {
+  margin: 10px 8px 50px;
+}
+.container-favorites .favorites .comics .card {
+  height: 150px;
+}
+.container-favorites .favorites .comics .card h3 {
+  margin-bottom: 30px;
+}
+.container-favorites .favorites .comics .card img {
+  height: 150px;
+}
+
+@media (min-width: 600px) {
+  .container-favorites .favorites .comics .card {
+    height: 225px;
+    width: 150px;
+  }
+  .container-favorites .favorites .comics .card img {
+    height: 225px;
+    width: 150px;
+  }
+}
+@media (min-width: 1280px) {
+  .container-favorites .favorites .comics .card {
+    height: 252px;
+    width: 168px;
+  }
+  .container-favorites .favorites .comics .card img {
+    height: 252px;
+    width: 168px;
+  }
 }/*# sourceMappingURL=styles.css.map */
