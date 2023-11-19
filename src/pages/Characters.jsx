@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Pagination from "../components/Pagination";
 import CharacterCard from "../components/CharacterCard";
+import Autocomplete from "../components/Autocomplete";
 
 const Characters = () => {
 	const [data, setData] = useState([]);
@@ -11,6 +11,7 @@ const Characters = () => {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [searchTerm, setSearchTerm] = useState("");
 	const [favorites, setFavorites] = useState({});
+	const [suggestions, setSuggestions] = useState([]);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -69,35 +70,37 @@ const Characters = () => {
 		);
 	};
 
-	const handleSearch = (e) => {
-		setSearchTerm(e.target.value);
+	const handleSearch = (term) => {
+		setSearchTerm(term);
+		// Reset page to 1 when a new search is performed
+		setCurrentPage(1);
 	};
+
+	// Build a list of suggestions from character names
+	useEffect(() => {
+		const characterNames = data.map((character) => character.name);
+		setSuggestions(characterNames);
+	}, [data]);
 
 	return isLoading ? (
 		<p>Loading...</p>
 	) : (
 		<div className="container-characters">
 			<h1>Personnages</h1>
-			<div className="search-bar">
-				<input
-					type="text"
-					placeholder="Recherche par nom"
-					value={searchTerm}
-					onChange={handleSearch}
-				/>
-				<FontAwesomeIcon icon="magnifying-glass" />
-			</div>
+			<Autocomplete
+				onSearch={handleSearch}
+				suggestions={searchTerm ? suggestions : []}
+			/>
+
 			<div className="characters">
-				{data.map((character) => {
-					return (
-						<CharacterCard
-							key={character._id}
-							character={character}
-							isFavorite={favorites[character._id]}
-							handleToggleFavorite={handleToggleFavorite}
-						/>
-					);
-				})}
+				{data.map((character) => (
+					<CharacterCard
+						key={character._id}
+						character={character}
+						isFavorite={favorites[character._id]}
+						handleToggleFavorite={handleToggleFavorite}
+					/>
+				))}
 			</div>
 			<Pagination
 				currentPage={currentPage}
@@ -107,4 +110,5 @@ const Characters = () => {
 		</div>
 	);
 };
+
 export default Characters;

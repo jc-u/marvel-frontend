@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Pagination from "../components/Pagination";
 import ComicCard from "../components/ComicCard";
+import Autocomplete from "../components/Autocomplete";
 
 const Comics = () => {
 	const [data, setData] = useState([]);
@@ -11,6 +11,7 @@ const Comics = () => {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [searchTerm, setSearchTerm] = useState("");
 	const [favorites, setFavorites] = useState({});
+	const [suggestions, setSuggestions] = useState([]);
 
 	const customSort = (a, b) => {
 		// Function to extract the letter part of the title
@@ -84,9 +85,18 @@ const Comics = () => {
 		localStorage.setItem("comicFavorites", JSON.stringify(updatedFavorites));
 	};
 
-	const handleSearch = (e) => {
-		setSearchTerm(e.target.value);
+	const handleSearch = (term) => {
+		setSearchTerm(term);
+		// Reset page to 1 when a new search is performed
+		setCurrentPage(1);
 	};
+
+	// Build a list of suggestions from character names
+	useEffect(() => {
+		const comicNames = data.map((comic) => comic.title);
+		const sortedSuggestions = comicNames.sort(); // Alphabetical sorting
+		setSuggestions(sortedSuggestions);
+	}, [data]);
 
 	return isLoading ? (
 		<p>Loading...</p>
@@ -94,15 +104,11 @@ const Comics = () => {
 		<>
 			<div className="container-comics">
 				<h1>Comics</h1>
-				<div className="search-bar">
-					<input
-						type="text"
-						placeholder="Recherche par nom"
-						value={searchTerm}
-						onChange={handleSearch}
-					/>
-					<FontAwesomeIcon icon="magnifying-glass" />
-				</div>
+				<Autocomplete
+					onSearch={handleSearch}
+					suggestions={searchTerm ? suggestions : []}
+				/>
+
 				<div className="comics">
 					{data.map((comic) => {
 						return (

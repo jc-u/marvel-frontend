@@ -476,6 +476,13 @@ header .container-header .container-mobile nav a:hover {
   height: 1em;
   vertical-align: -0.125em;
 }
+.container-characters .search-bar ul,
+.container-comics .search-bar ul,
+.container-favorites .search-bar ul,
+.character-container .search-bar ul,
+.comic-container .search-bar ul {
+  display: none;
+}
 .container-characters .characters,
 .container-characters .comics,
 .container-characters .favorites,
@@ -759,6 +766,41 @@ header .container-header .container-mobile nav a:hover {
   .character-container .search-bar input,
   .comic-container .search-bar input {
     width: 1158px;
+  }
+  .container-characters .search-bar ul,
+  .container-comics .search-bar ul,
+  .container-favorites .search-bar ul,
+  .character-container .search-bar ul,
+  .comic-container .search-bar ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    flex-direction: column;
+    overflow: auto;
+    padding: 20px 0;
+  }
+  .container-characters .search-bar ul li,
+  .container-comics .search-bar ul li,
+  .container-favorites .search-bar ul li,
+  .character-container .search-bar ul li,
+  .comic-container .search-bar ul li {
+    font-family: "Montserrat", sans-serif;
+    color: white;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  .container-characters .search-bar ul li:hover,
+  .container-comics .search-bar ul li:hover,
+  .container-favorites .search-bar ul li:hover,
+  .character-container .search-bar ul li:hover,
+  .comic-container .search-bar ul li:hover {
+    color: #d40317;
   }
   .container-characters .characters,
   .container-characters .comics,

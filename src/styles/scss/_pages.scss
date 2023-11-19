@@ -32,6 +32,10 @@
 			height: 1em;
 			vertical-align: -0.125em;
 		}
+
+		ul {
+			display: none;
+		}
 	}
 	.characters,
 	.comics,
@@ -141,6 +145,31 @@
 			}
 
 			svg {
+			}
+
+			ul {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background-color: rgba(0, 0, 0, 0.7);
+				box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+				-webkit-backdrop-filter: blur(10px);
+				backdrop-filter: blur(10px);
+				transition: background-color 0.3s ease, box-shadow 0.3s ease;
+				width: 100%;
+				flex-direction: column;
+				overflow: auto;
+				padding: 20px 0;
+				li {
+					font-family: "Montserrat", sans-serif;
+					color: white;
+					transition: all 0.3s ease;
+					cursor: pointer;
+
+					&:hover {
+						color: $primary;
+					}
+				}
 			}
 		}
 		.characters,
