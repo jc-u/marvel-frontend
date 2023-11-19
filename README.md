@@ -1,6 +1,18 @@
 <p align="center">
   <img src="/src/assets/images/logo.svg" width="500px"alt="logo"/>
 </p>
+<p align="center">
+  <img src="/src/assets/images/ce1" width="500px"alt="logo"/>
+</p>
+<p align="center">
+  <img src="/src/assets/images/ce2" width="500px"alt="logo"/>
+</p>
+<p align="center">
+  <img src="/src/assets/images/ce3" width="500px"alt="logo"/>
+</p>
+<p align="center">
+  <img src="/src/assets/images/ce4" width="500px"alt="logo"/>
+</p>
 
 ---
 
@@ -13,8 +25,6 @@
 ---
 
 # Marvel
-
-Created with React App
 
 ## Table des matières
 
@@ -41,16 +51,16 @@ Vous hébergerez votre frontend sur Netlify et votre backend sur NorthFlank.
 - [React](https://fr.reactjs.org/) v18.2.0
 - [React-dom](https://www.npmjs.com/package/react-dom) v18.2.0
 - [FontAwesome](https://fontawesome.com/) v5.15.4
-- [Vitejs] (https://vitejs.dev/) vite 4
-- [Axios] (https://axios-http.com/)
-- [Sass] (https://sass-lang.com/) v3.6.5
+- [Vitejs](https://vitejs.dev/) vite 4
+- [Axios](https://axios-http.com/)
+- [Sass](https://sass-lang.com/) v3.6.5
 
 ### 1 | Back-end
 
 1. Download or clone the back-end's repository :
 
 ```sh
-git clone (https://github.com/jc-u/marvel-backend.git)
+git clone(https://github.com/jc-u/marvel-backend.git)
 ```
 
 2. Run the following commands:
