@@ -13,7 +13,7 @@ const Character = () => {
 		const fetchData = async () => {
 			try {
 				const response = await axios.get(
-					`https://site--marvel-backend--tfb724g8njkw.code.run/marvel/character/${id}`
+					`https://site--marvel-backend--kvs4pj8nh4kv.code.run/marvel/character/${id}`
 				);
 				setData(response.data);
 				setIsLoading(false);
