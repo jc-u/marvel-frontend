@@ -60,7 +60,7 @@ Vous hébergerez votre frontend sur Netlify et votre backend sur NorthFlank.
 1. Download or clone the back-end's repository :
 
 ```sh
-git clone(https://github.com/jc-u/marvel-backend.git)
+git clone `https://github.com/jc-u/marvel-backend.git`
 ```
 
 2. Run the following commands:
@@ -70,11 +70,11 @@ git clone(https://github.com/jc-u/marvel-backend.git)
 npm install
 ```
 
-Your server should now be running at http://locahost:3000 or on Northflank : (https://site--marvel-backend--kvs4pj8nh4kv.code.run/)
+Your server should now be running at `http://locahost:3000` or on Northflank : `https://site--marvel-backend--kvs4pj8nh4kv.code.run`
 
 ## API Documentation
 
-You can get an api key here : (https://lereacteur-marvel-api.netlify.app/)
+You can get an api key here : `https://lereacteur-marvel-api.netlify.app`
 
 ### 2 | Front-end
 
@@ -82,7 +82,7 @@ Instructions pour installer le frontend localement.
 
 ```bash
 # Cloner le dépôt
-git clone (https://github.com/jc-u/marvel-frontend.git)
+git clone `https://github.com/jc-u/marvel-frontend.git`
 
 # Accéder au répertoire du projet
 cd marvel-frontend
