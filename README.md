@@ -2,16 +2,16 @@
   <img src="/src/assets/images/logo.svg" width="500px"alt="logo"/>
 </p>
 <p align="center">
-  <img src="/src/assets/images/ce1" width="500px"alt="logo"/>
+  <img src="/src/assets/images/ce1.png" width="500px"alt="logo"/>
 </p>
 <p align="center">
-  <img src="/src/assets/images/ce2" width="500px"alt="logo"/>
+  <img src="/src/assets/images/ce2.png" width="500px"alt="logo"/>
 </p>
 <p align="center">
-  <img src="/src/assets/images/ce3" width="500px"alt="logo"/>
+  <img src="/src/assets/images/ce3.png" width="500px"alt="logo"/>
 </p>
 <p align="center">
-  <img src="/src/assets/images/ce4" width="500px"alt="logo"/>
+  <img src="/src/assets/images/ce4.png" width="500px"alt="logo"/>
 </p>
 
 ---
