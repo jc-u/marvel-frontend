@@ -17,7 +17,7 @@ const Characters = () => {
 		const fetchData = async () => {
 			try {
 				const response = await axios.get(
-					`https://site--marvel-backend--kvs4pj8nh4kv.code.run/marvel/characters?limit=100&skip=${
+					`https://site--marvel--gkd8pqzc29vb.code.run/marvel/characters?limit=100&skip=${
 						(currentPage - 1) * 100
 					}&name=${searchTerm}`
 				);
